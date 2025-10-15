@@ -25,7 +25,6 @@ namespace ConsoleApp1
             //Task4: Mobile phone battery simulator
             //set initial battery level
             int BatteryLevel = 50;
-
             //while loop to ask user if they wish to charge or use the phonebefore then calling that method and re-loop if user inputs an invalid selection
             while (true)
             {
@@ -46,8 +45,33 @@ namespace ConsoleApp1
                     Console.WriteLine("Invalid selection. Please enter either 'charge' or 'use'.");
                 }
             }
-           
-           
+
+            //Task5: Daily Expense Tracker
+            // program to track daily spending against a set budget, retrieve budget amount then repeatedly promt for individual expense amounts untill the user choses to stop 
+            //retrieve budget amount
+            Console.Write("Please enter your total budget: ");
+            double budget = Convert.ToDouble(Console.ReadLine());
+            double total = 0;
+            //while loop to repeatedly prompt for individual expense amounts until the user chooses to stop not allowing negative amounts
+            while (true)
+            {
+                Console.Write("Would you like to add an expense? (yes/no) ");
+                string response = Console.ReadLine().ToLower();
+                if (response == "yes")
+                {
+                    AddExpense(ref total, budget);
+                    GetRemaining( budget, total); break;
+                }
+                else if (response == "no")
+                {
+                    Console.WriteLine("Thank you for using the Daily Expense Tracker. Goodbye!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid selection. Please enter either 'yes' or 'no'.");
+                }
+            }
         }
 
         //Method to ask user for 2 whole numbers and print their sum
@@ -72,13 +96,13 @@ namespace ConsoleApp1
         static int Findlargestnumber()
         {
             // Declare 4 open integer variables
-            int num1, num2, num3, largest;         
+            int num1, num2, num3, largest;
             //Ask for the first number
             Console.Write("Please enter a whole number: ");
-            num1 = Convert.ToInt32(Console.ReadLine());            
+            num1 = Convert.ToInt32(Console.ReadLine());
             //Ask for the second number
             Console.Write("Please enter a 2nd whole number: ");
-            num2 = Convert.ToInt32(Console.ReadLine());            
+            num2 = Convert.ToInt32(Console.ReadLine());
             //Ask for the third number
             Console.Write("Please enter a 3rd whole number: ");
             num3 = Convert.ToInt32(Console.ReadLine());
@@ -107,26 +131,26 @@ namespace ConsoleApp1
         {
             // Declare open integer and double variables
             int count, i;
-            double num, sum = 0, average;         
+            double num, sum = 0, average;
             //Ask how many numbers the user wishes to enter
             Console.Write("How many whole numbers do you wish to enter? ");
-            count = Convert.ToInt32(Console.ReadLine());            
+            count = Convert.ToInt32(Console.ReadLine());
             //Use a for loop to ask for the specified number of whole numbers, adding each to a running total
             for (i = 1; i <= count; i++)
             {
                 Console.Write("Please enter whole number " + i + ": ");
                 num = Convert.ToDouble(Console.ReadLine());
                 sum += num;
-            }            
+            }
             //Calculate the average of the entered numbers and print it to the console
             average = sum / count;
-            Console.WriteLine("The average of the " + count + " numbers you entered is: " + average);            
+            Console.WriteLine("The average of the " + count + " numbers you entered is: " + average);
             //Return the average to the calling method
             return average;
         }
 
         //Method that uses the current battery level as reference, asks how much to charge the battery by, increases the battery level accordingly (without exceeding 100%), print the new battery level to the console
-       static void Chargebattery(ref int BatteryLevel)
+        static void Chargebattery(ref int BatteryLevel)
         {
             //Declare open integer variable
             int chargeAmount;
@@ -158,6 +182,37 @@ namespace ConsoleApp1
             }
             //Print the new battery level to the console
             Console.WriteLine("The new battery level is: " + batteryLevel + "%");
+        }
+
+        //method to add an expense amount to the total expenses, ensuring the amount is not negative
+        static void AddExpense(ref double total, double budget)
+        {
+           
+            //Ask for the expense amount
+            Console.Write("Please enter the expense amount: ");
+            double expense = Convert.ToDouble(Console.ReadLine());
+            //Ensure the expense amount is not negative
+            if (expense < 0)
+            {
+                Console.WriteLine("Expense amount cannot be negative. Please try again.");
+            }
+            else
+            {
+                //Add the expense amount to the total expenses
+                total += expense;
+                Console.WriteLine("Expense of " + expense + " added. Total expenses are now: " + total);
+                //Check if the total expenses exceed the budget and print a warning if so
+                if (total > budget)
+                {
+                    Console.WriteLine("Warning: You have exceeded your budget of " + budget + " by " + (total - budget));
+                }
+                else
+                {
+                    Console.WriteLine("You are within your budget of " + budget + ". You have " + (budget - total) + " remaining.");
+                }
+            }
+
+
         }
 
     }
