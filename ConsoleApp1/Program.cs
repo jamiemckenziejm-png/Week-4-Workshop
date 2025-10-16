@@ -14,13 +14,22 @@ namespace ConsoleApp1
             //Call the Addnumbers method
             Addnumbers();
 
+            //Clear the console to separate the tasks visually
+            Console.Clear();
+
             //Task2: Find the largest of three numbers
             //Call the findlargestnumber method
             Findlargestnumber();
 
+            //Clear the console to separate the tasks visually
+            Console.Clear();
+
             //Task3: Calculate the average of several numbers
             //call the calculateaverageofseveralnumbers method
             Calculateaverageofseveralnumbers();
+
+            //Clear the console to separate the tasks visually
+            Console.Clear();
 
             //Task4: Mobile phone battery simulator
             //set initial battery level
@@ -45,6 +54,9 @@ namespace ConsoleApp1
                     Console.WriteLine("Invalid selection. Please enter either 'charge' or 'use'.");
                 }
             }
+
+            //Clear the console to separate the tasks visually
+            Console.Clear();
 
             //Task5: Daily Expense Tracker
             // program to track daily spending against a set budget, retrieve budget amount then repeatedly promt for individual expense amounts untill the user choses to stop 
@@ -73,7 +85,7 @@ namespace ConsoleApp1
                 }
             }
         }
-
+        //Task1
         //Method to ask user for 2 whole numbers and print their sum
         static int Addnumbers()
         {
@@ -92,6 +104,7 @@ namespace ConsoleApp1
             return sum;
         }
 
+        //Task2
         //Method to ask user for 3 whole numbers and print the largest
         static int Findlargestnumber()
         {
@@ -126,6 +139,7 @@ namespace ConsoleApp1
             return largest;
         }
 
+        //Task3
         //Method to ask user for how many numbers they wish to enter, then ask for that many whole numbers and print their average
         static double Calculateaverageofseveralnumbers()
         {
@@ -149,6 +163,7 @@ namespace ConsoleApp1
             return average;
         }
 
+        //Task4
         //Method that uses the current battery level as reference, asks how much to charge the battery by, increases the battery level accordingly (without exceeding 100%), print the new battery level to the console
         static void Chargebattery(ref int BatteryLevel)
         {
@@ -184,6 +199,7 @@ namespace ConsoleApp1
             Console.WriteLine("The new battery level is: " + batteryLevel + "%");
         }
 
+        //Task5
         //method to add an expense amount to the total expenses, ensuring the amount is not negative
         static void AddExpense(ref double total, double budget)
         {
@@ -215,6 +231,12 @@ namespace ConsoleApp1
 
         }
 
+        //method to calculate and print the remaining budget
+        static void GetRemaining(double budget, double total)
+        {
+            double remaining = budget - total;
+            Console.WriteLine("You have " + remaining + " remaining in your budget of " + budget);
+        }
     }
 
 }
